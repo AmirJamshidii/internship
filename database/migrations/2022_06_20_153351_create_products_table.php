@@ -13,11 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $tanle->varchar('name')->unique();
+        Schema::create('products', function (Blueprint $table) {
+            $table->increments('product_id');
+            $table->varchar('title');
+            $table->text('body');
+            $table->integer('price');
+            $table->boolean('user_can_veiw');
+            $table->integer('category_id')->unsigned()->index();
             $table->boolean('status');
-            $table->integer('categoryale_id');
-            $table->string('categoryable_type');
+            $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
         });
     }
@@ -29,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('products');
     }
 };

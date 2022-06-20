@@ -65,3 +65,23 @@ class User extends Authenticatable implements JWTSubject
     }
 
 }
+
+class User extends model{
+
+    public function comments()
+    {
+        return $this->hasmany(Comment::class, 'commentable');    
+    }
+
+    public function articles()
+    {
+        return $this->hasmany(Article::class, 'user_id');
+    }
+
+   
+
+    public function products()
+    {
+        return $this->hasmany(Product::class, 'user_id');
+    }
+}

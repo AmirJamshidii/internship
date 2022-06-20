@@ -13,11 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
-            $tanle->varchar('name')->unique();
+        Schema::create('comments', function (Blueprint $table) {
+            $table->increments('id');
+            $table->varchar('body');
+            $table->varchar('user_email');
+            $table->varchar('name');
             $table->boolean('status');
-            $table->integer('categoryale_id');
-            $table->string('categoryable_type');
+            $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categories');
+        Schema::dropIfExists('comments');
     }
 };
