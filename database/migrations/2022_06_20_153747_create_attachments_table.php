@@ -14,10 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('attachments', function (Blueprint $table) {
-            $table->varchar('url');
-            $table->boolean('status');
-            $table->integer('article_id')->unsigned()->index();
-            $table->integer('product_id')->unsigned()->index();
+            $table->increments('id');
+            $table->string('url');
+            $table->tinyinteger('status')->default('1');
+            $table->integer('attachmentable_id');
+            $table->string('attachmentable_type');
             $table->timestamps();
             
         });

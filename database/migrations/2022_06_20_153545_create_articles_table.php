@@ -14,11 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('articles', function (Blueprint $table) {
-            $table->increments('article_id');
+            $table->increments('id');
             $table->varchar('title');
-            $table->varchar('body');
-            $table->boolean('status');
-            $table->boolean('user_can_veiw')->index();
+            $table->text('body', 256)->nullable();
+            $table->tinyInteger('status')->default('1');
+            // $table->boolean('user_can_veiw')->index();
             $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
         });

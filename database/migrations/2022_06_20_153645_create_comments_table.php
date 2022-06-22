@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('comments', function (Blueprint $table) {
             $table->increments('id');
-            $table->varchar('body');
+            $table->text('body', 256);
             $table->varchar('user_email');
             $table->varchar('name');
-            $table->boolean('status');
-            $table->integer('user_id')->unsigned()->index();
+            $table->tinyInteger('status')->default('1');
+            $table->integer('user_id')->nullable()->unsigned()->index();
+            $table->integer('commentable_id');
+            $table->string('commentable_type');
             $table->timestamps();
         });
     }
