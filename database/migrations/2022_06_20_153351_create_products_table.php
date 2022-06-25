@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
-            $table->varchar('title');
+            $table->varchar('title')->unique();
             $table->text('body')->nullable();
             $table->integer('price')->defeault('0');
             // $table->boolean('user_can_veiw');
