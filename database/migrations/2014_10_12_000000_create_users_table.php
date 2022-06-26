@@ -17,6 +17,7 @@ return new class extends Migration
             $table->increments('id');
             $table->string('name')->unique();
             $table->string('email')->unique();
+            $table->integer('is_admin'); 
             $table->varchar('password');
             // $table->boolean('is_admin')->index();
             $table->tinyInteger('status')->default('1');
