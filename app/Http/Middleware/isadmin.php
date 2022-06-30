@@ -19,14 +19,17 @@ class isadmin
     public function handle(Request $request, Closure $next)
     {
 
-        if ($request->input('token') !== 'my-secret-token') {
-                $id = Auth::id();
-                $host = DB::table('user')->where('id', $id)->get('username');
-                    if($host){
-                        return $host;
-                    }
-            return redirect('dashboard');
+        if (Auth::check()) {
+            $id = Auth::id();
+            $isadmin= DB::table('user')->where('id', $id)->get('isadmin');
+                
+                if($isadmin !== 1){
+                    return $next($request);
+                    // return redirect('dashboard');
+                }
+                else{
+                    abort(403, 'Unauthorized action.');
+                }      
         }
-        return $next($request);
-    }
+    }  
 }
